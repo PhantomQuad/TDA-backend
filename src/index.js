@@ -13,6 +13,7 @@ const multer = require("multer");
 const { User } = require("../models/user");
 const { Employer } = require("../models/employer");
 const sendMailMethod = require("../src/emailServer");
+const port = process.env.PORT || 3001;
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -192,9 +193,7 @@ app.get("/user/cv/:filename", (req, res) => {
 });
 
 // starting the server
-app.listen(3001, () => {
-  console.log("listening on port 3001");
-});
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

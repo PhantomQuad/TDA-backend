@@ -193,7 +193,7 @@ app.post("/user/cv/new", uploadDisk.single("myfile"), async (req, res) => {
 });
 
 // starting the server
-app.listen(port, () => console.log(`Now listening on port ${port}!`));
+app.listen(port, () => console.log(`Listening on port ${port}!`));
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

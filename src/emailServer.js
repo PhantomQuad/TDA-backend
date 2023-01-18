@@ -10,6 +10,7 @@ const smtpUser = process.env.smtpUser;
 const smtpPass = process.env.smtpPass;
 
 const nodemailer = require("nodemailer");
+
 const path = require("path");
 /**
  * sendEmail

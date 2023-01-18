@@ -112,6 +112,26 @@ app.post("/auth", async (req, res) => {
   }
 });
 
+app.get("/user/pic/:filename", (req, res) => {
+  try {
+    const path = require("path");
+    // console.log("Got Here", __dirname + "./uploads/" + req.params.filename);
+    res.sendFile(path.resolve("./uploads/" + req.params.filename));
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/user/cv/:filename", (req, res) => {
+  try {
+    const path = require("path");
+    // console.log("Got Here", __dirname + "./uploads/" + req.params.filename);
+    res.sendFile(path.resolve("./uploads/" + req.params.filename));
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.use(async (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const user = await User.findOne({ token: authHeader });
@@ -163,16 +183,6 @@ app.post("/user/pic/new", uploadDisk.single("myfile"), async (req, res) => {
   res.json({ message: "Upload Complete" });
 });
 
-app.get("/user/pic/:filename", (req, res) => {
-  try {
-    const path = require("path");
-    // console.log("Got Here", __dirname + "./uploads/" + req.params.filename);
-    res.sendFile(path.resolve("./uploads/" + req.params.filename));
-  } catch (err) {
-    console.log(err);
-  }
-});
-
 app.post("/user/cv/new", uploadDisk.single("myfile"), async (req, res) => {
   let fileType = req.file.originalname.split(".");
   fs.writeFileSync(
@@ -180,16 +190,6 @@ app.post("/user/cv/new", uploadDisk.single("myfile"), async (req, res) => {
     req.file.buffer
   );
   res.json({ message: "Upload Complete" });
-});
-
-app.get("/user/cv/:filename", (req, res) => {
-  try {
-    const path = require("path");
-    // console.log("Got Here", __dirname + "./uploads/" + req.params.filename);
-    res.sendFile(path.resolve("./uploads/" + req.params.filename));
-  } catch (err) {
-    console.log(err);
-  }
 });
 
 // starting the server

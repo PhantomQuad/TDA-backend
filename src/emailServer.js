@@ -21,7 +21,7 @@ const path = require("path");
  * @param {String} text - Email body
  */
 const sendEmail = async (mailObj) => {
-  console.log(mailObj);
+  //console.log(mailObj);
   const { from, to, company, subject, text } = mailObj;
   try {
     // Create a transporter
@@ -42,7 +42,7 @@ const sendEmail = async (mailObj) => {
       text: text, // plain text body
     });
 
-    console.log(`Message sent: ${info.messageId}`);
+    //console.log(`Message sent: ${info.messageId}`);
     return `Message sent: ${info.messageId}`;
   } catch (error) {
     console.error(error);
